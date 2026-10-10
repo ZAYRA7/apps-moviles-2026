@@ -6,16 +6,24 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -42,6 +50,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun App(modifier: Modifier = Modifier) {
     // LazyColumn principal (Scroll Vertical)
+    var counter by rememberSaveable { mutableStateOf (value = 0)}
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -56,6 +65,14 @@ fun App(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .height(400.dp)
             )
+            Row (modifier = Modifier.padding(top = 8.dp )){
+                Image(
+                    painter = painterResource(id = R.drawable.ic_favorite),
+                    contentDescription = "Like",
+                    modifier = Modifier.clickable {counter++}
+                )
+                Text(text = counter.toString(), color = Color.White, modifier = Modifier.padding(start = 4.dp))
+            }
 
             // 2. Título Principal Estilizado y Centrado
             Text(
@@ -87,20 +104,6 @@ fun App(modifier: Modifier = Modifier) {
                 item {
                     Text(text = "Java ", color = Color.White)
                     Text(text = "KOTLIN ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
-                    Text(text = "Suscríbete ", color = Color.White)
                     Text(text = "Suscríbete ", color = Color.White)
                 }
             }
